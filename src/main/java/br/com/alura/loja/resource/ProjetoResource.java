@@ -2,6 +2,7 @@ package br.com.alura.loja.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -17,11 +18,12 @@ public class ProjetoResource {
      * 
      * @return
      */
+	@Path("{id}")
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public String busca() {
+    public String busca(@PathParam("id") long id) {
         ProjetoDAO projeto = new ProjetoDAO();
-        return toXml(projeto.busca(1l));
+        return toXml(projeto.busca(id));
     }
 
     /**

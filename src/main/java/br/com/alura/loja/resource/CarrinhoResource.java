@@ -2,6 +2,7 @@ package br.com.alura.loja.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -13,25 +14,26 @@ import br.com.alura.loja.modelo.Carrinho;
 @Path("carrinhos")
 public class CarrinhoResource {
 
-    /**
-     * 
-     * @return
-     */
-    @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String busca() {
-        CarrinhoDAO carrinho = new CarrinhoDAO();
-        return toXml(carrinho.busca(1l));
-    }
+	/**
+	 * 
+	 * @return
+	 */
+	@Path("{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public String busca(@PathParam("id") long id) {
+		CarrinhoDAO carrinho = new CarrinhoDAO();
+		return toXml(carrinho.busca(id));
+	}
 
-    /**
-     * 
-     * @param carrinho
-     * @return
-     */
-    private String toXml(Carrinho carrinho) {
-        XStream xStream = new XStream();
-        return xStream.toXML(carrinho);
-    }
+	/**
+	 * 
+	 * @param carrinho
+	 * @return
+	 */
+	private String toXml(Carrinho carrinho) {
+		XStream xStream = new XStream();
+		return xStream.toXML(carrinho);
+	}
 
 }
