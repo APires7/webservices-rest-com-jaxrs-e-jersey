@@ -76,5 +76,25 @@ public class Carrinho {
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
+	
+	/**
+	 * 
+	 * @param carrinho
+	 * @return
+	 */
+	public String toXml(Carrinho carrinho) {
+		XStream xStream = new XStream();
+		return xStream.toXML(carrinho);
+	}
+
+	/**
+	 * 
+	 * @param carrinho
+	 * @return
+	 */
+	public String toJson(Carrinho carrinho) {
+		Gson gson = new Gson();
+		return gson.toJson(carrinho);
+	}
 
 }
