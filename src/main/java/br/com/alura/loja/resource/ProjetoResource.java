@@ -2,6 +2,7 @@ package br.com.alura.loja.resource;
 
 import java.net.URI;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -63,6 +64,18 @@ public class ProjetoResource {
 	public String toJson(Projeto projeto) {
 		Gson gson = new Gson();
 		return gson.toJson(projeto);
+	}
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Path("{id}")
+	@DELETE
+	public Response removeProjeto(@PathParam("id") long id) {
+		new ProjetoDAO().remove(id);
+		return Response.ok().build();
 	}
 
 }
